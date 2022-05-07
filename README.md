@@ -64,7 +64,8 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
  2. Al realizar los pasos anteriores, debe sincronizar su proyecto con gradle.
  
  ## Inicialización de la SDK
-En el método onCreate () de su clase de aplicación, inicialice Become utilizando el siguiente fragmento de código:
+ 
+**En el método **onCreate ()** de su **Activity** en su aplicación, inicialice Become para la captura de imágenes, se debe asignar el **ItFirstTransaction** como True, puedes utilizar el siguiente fragmento de código:**
 
 	public class MainActivity extends AppCompatActivity {
     
@@ -77,24 +78,33 @@ En el método onCreate () de su clase de aplicación, inicialice Become utilizan
 	    setContentView (R.layout.activity_main);
 
         //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
-        String validatiopnTypes =  "PASSPORT/LICENSE/DNI/VIDEO" ;  
-        String clientSecret =  "your client Secret here" ;  
-        String clientId =  "your client ID here" ;  
+        String token =  "your bearer token here" ;  
         String contractId =  "your contract ID here";
         String userId = "your user ID here"
 	
         //Instancia para iniciar la interfaz
-        BecomeResponseManager.getInstance ( ).startAutentication (MainActivity.this,  
-            new BDIVConfig (clientId,  
-                    clientSecret,  
-                    contractId,  
-                    validatiopnTypes,  
-                    true,  
-                    null,
-		    userId
-            ));
+      BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
+                    new BDIVConfig(true,
+                            token,
+                            contractId,
+                            userId));
 	  }
 	}
+	
+**3. En el método **secondAction ()** de su **Activity** de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el **ItFirstTransaction** como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
+ 
+        //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
+        String token =  "your bearer token here" ;  
+        String contractId =  "your contract ID here";
+        String userId = "your user ID here"
+        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
+                new BDIVConfig(false,
+                        token,
+                        contractId,
+                        userId,
+                        frontImagePath
+                ));
+	
 
 ## Posibles Errores
 
@@ -103,11 +113,10 @@ Los siguientes parámetros son necesarios para la activación de la SDK por lo t
  
 Parámetro | Valor
 ------------ | -------------
-validatiopnTypes | ""
-clientSecret | ""
-clientId | ""
-contractId  | ""
-userID  | ""
+contractId | String
+userId  | String
+ItFirstTransaction  | Bool
+frontImagePath  | String
 
 
 Mostrará el siguiente error por consola:
