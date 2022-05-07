@@ -17,7 +17,7 @@ Este es un espacio para conocer a cerca del SDK Android de Become para la valida
 		        sourceCompatibility = 1.8
 			targetCompatibility = 1.8
 		     }
-		}
+		 }
 				
 2. El archivo build.grade debe contar con una referencia al repositorio:
 	
@@ -91,13 +91,14 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
 	  }
 	}
 	
-**3. En el método **secondAction ()** de su **Activity** de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el **ItFirstTransaction** como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
+En el método **secondAction ()** de su **Activity** de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el **ItFirstTransaction** como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
  
         //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
 	
         String token =  "your bearer token here" ;  
         String contractId =  "your contract ID here";
         String userId = "your user ID here"
+	String frontImagePath = "Image path, returned by the first event"
         BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
                 new BDIVConfig(false,
                         token,
