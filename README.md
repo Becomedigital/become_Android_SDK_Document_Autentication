@@ -65,7 +65,7 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
  
  ## Inicialización de la SDK
  
-**En el método **onCreate ()** de su **Activity** en su aplicación, inicialice Become para la captura de imágenes, se debe asignar el **ItFirstTransaction** como True, puedes utilizar el siguiente fragmento de código:**
+**En el método `onCreate ()` de su `Activity` en su aplicación, inicialice Become para la captura de imágenes, se debe asignar el `ItFirstTransaction` como True, puedes utilizar el siguiente fragmento de código:**
 
 	public class MainActivity extends AppCompatActivity {
     
@@ -91,7 +91,9 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
 	  }
 	}
 	
-En el método **secondAction ()** de su **Activity** de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el **ItFirstTransaction** como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
+En el método `secondAction ()` de su `Activity` de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el `ItFirstTransaction` como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
+
+Nota: para obtener información de la registraduría nacional de Colombia, se requiere se adicione el parámetro `documentNumber`, el cual es retornado por el primer llamado a la SDK. 
  
         //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
 	
@@ -104,6 +106,7 @@ En el método **secondAction ()** de su **Activity** de aplicación, inicialice 
                         token,
                         contractId,
                         userId,
+			glovalresponseIV.getDocumentNumber(), // adicionar este parámetro si es documento colombiano.
                         frontImagePath
                 ));
 		
