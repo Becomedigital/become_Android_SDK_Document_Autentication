@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Navegar para a página inicial"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Navegar para cima"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Mais opções"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Concluído"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Ver tudo"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Selecionar um app"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"DESATIVADO"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ATIVADO"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"espaço"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Pesquisar…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Limpar consulta"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Consulta de pesquisa"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pesquisar"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Enviar consulta"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Pesquisa por voz"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Compartilhar com"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Compartilhar com <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Recolher"</string>
+    <string name="mb_activity_title_step_back_side">Verso</string>
+    <string name="mb_activity_title_step_front_side">Frente</string>
+    <string name="mb_autofocus_fail">A câmara não consegue focar. Experimente digitalizar sob uma luz diferente.</string>
+    <string name="mb_blinkid_back_instructions">Digitalize o verso do documento\n</string>
+    <string name="mb_blinkid_back_instructions_barcode">Digitalizar o código de barras</string>
+    <string name="mb_blinkid_camera_flip_document">Vire o documento</string>
+    <string name="mb_blinkid_document_not_fully_visible">Mantenha o documento totalmente visível</string>
+    <string name="mb_blinkid_document_too_close_to_edge">Mova o documento da margem</string>
+    <string name="mb_blinkid_front_instructions">Digitalize a frente\nde um documento</string>
+    <string name="mb_camera_not_allowed">Não é permitido o acesso à câmara devido às configurações de permissão.</string>
+    <string name="mb_camera_not_ready">A câmara não está pronta.</string>
+    <string name="mb_camera_permission_required">É necessária a permissão de acesso à câmara.</string>
+    <string name="mb_close">Fechar</string>
+    <string name="mb_custom_ui_forbidden">A licença não permite a atividade personalizada da câmara!</string>
+    <string name="mb_data_not_match_msg">Reinicie o processo de digitalização.</string>
+    <string name="mb_data_not_match_retry_button">Tente novamente</string>
+    <string name="mb_data_not_match_title">Os lados não coincidem</string>
+    <string name="mb_dismiss_error_dialog">Fechar</string>
+    <string name="mb_enable_camera">Ative a câmara</string>
+    <string name="mb_enable_permission_help">Vai ser redirecionado para as configurações de permissão, onde tem de dar permissão à aplicação para acesso à câmara.</string>
+    <string name="mb_enable_permission_help_instant_app">Dê permissão de acesso à câmara nas configurações de permissão da aplicação.</string>
+    <string name="mb_error_camera_high">Aproxime</string>
+    <string name="mb_error_camera_near">Afaste</string>
+    <string name="mb_error_initializing">Falha ao iniciar a biblioteca nativa. Para mais informações, verifique o registo de erros ADB.</string>
+    <string name="mb_feature_unsupported_android_version">Esta funcionalidade é suportada em Android 2.1 e seguintes</string>
+    <string name="mb_feature_unsupported_autofocus">Esta funcionalidade não é suportada em câmaras sem foco automático</string>
+    <string name="mb_feature_unsupported_device">Esta funcionalidade não é suportada devido às propriedades técnicas do seu dispositivo.</string>
+    <string name="mb_flashlight">Lanterna</string>
+    <string name="mb_flashlight_warning_message">Tenha cuidado com o clarão da lanterna. \n Mova de forma ligeira a sua identificação para o evitar. </string>
+    <string name="mb_help">Ajuda</string>
+    <string name="mb_invalid_license">Chave de licença inválida! Para mais informações, verifique o registo de erros ADB.</string>
+    <string name="mb_licence_check_device_offline">Verifique a ligação à internet</string>
+    <string name="mb_licence_check_failed">Erro de rede</string>
+    <string name="mb_licence_locked">Digitalização não disponível</string>
+    <string name="mb_recognition_timeout_dialog_message">Não foi possível ler o documento. Tente novamente.</string>
+    <string name="mb_recognition_timeout_dialog_retry_button">Tente novamente</string>
+    <string name="mb_recognition_timeout_dialog_title">A digitalização falhou</string>
+    <string name="mb_something_went_wrong">Ocorreu um erro</string>
+    <string name="mb_splash_msg_id_back">Verso do documento de identificação</string>
+    <string name="mb_splash_msg_id_front">Frente do documento de identificação</string>
+    <string name="mb_tooltip_back_id">Coloque o <b>VERSO</b> do documento de identificação no enquadramento e aguarde pela digitalização automática</string>
+    <string name="mb_tooltip_front_id">Coloque a <b>FRENTE</b> do documento de identificação no enquadramento e aguarde pela digitalização automática</string>
+    <string name="mb_tooltip_glare">Desloque ligeiramente a identificação para eliminar o brilho.</string>
+    <string name="mb_try_scanning_again">As informações do documento parecem ser inconsistentes. Por favor, volte a tentar digitalizá-lo.</string>
+    <string name="mb_unsupported_document_message">Digitalize a frente de um documento suportado.</string>
+    <string name="mb_unsupported_document_title">Documento não reconhecido</string>
+    <string name="mb_warning_title">Aviso</string>
+    <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Navegar para cima"</string>
+    <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Abrir gaveta de navegação"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Pesquisar"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+</resources>
