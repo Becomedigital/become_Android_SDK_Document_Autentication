@@ -1,6 +1,0 @@
-com/becomedigital/sdk/identity/becomedigitalsdkiv/BuildConfig.java
- com.becomedigital.sdk.identity.becomedigitalsdkiv.BuildConfig
-com/becomedigital/sdk/identity/becomedigitalsdkiv/MainActivity.java
- com.becomedigital.sdk.identity.becomedigitalsdkiv.MainActivity
- com.becomedigital.sdk.identity.becomedigitalsdkiv.MainActivity$1
- com.becomedigital.sdk.identity.becomedigitalsdkiv.MainActivity$2

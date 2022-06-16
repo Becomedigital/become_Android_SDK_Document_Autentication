@@ -1,4 +1,0 @@
-#Wed Jun 15 22:39:09 COT 2022
-base.0=/Users/nelsonpena/Temp/Android/BecomeDigitalSDKIVMicroblinkMDR/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
