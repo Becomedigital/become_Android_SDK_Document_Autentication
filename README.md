@@ -8,24 +8,34 @@ Este es un espacio para conocer a cerca del SDK Android de Become para la valida
 
  1. Dentro del archivo build.gradle debe agregar las siguientes modificaciones:
 
-	         defaultConfig {
-	           minSdkVersion 21
-	         }
-		 
-		 android {
-		    compileOptions {
-		        sourceCompatibility = 1.8
-			targetCompatibility = 1.8
-		     }
-		 }
+	
 
 
 <p align="center">
   <img src="https://github.com/Becomedigital/become_ANDROID_SDK/blob/master/build_gradle.png">
 </p>
 
+	allprojects {
+	    repositories {
+		google()
+		jcenter()
+		maven { url 'https://maven.microblink.com' }
+	    }
+	}
+
 ### Implementación de módulos requeridos
-Cómo primera medida es necesaria la implementacion de los siguientes módulos:
+Cómo primera medida es necesaria la implementacion de los siguientes módulos y configuraciones:
+
+    defaultConfig {
+     minSdkVersion 21
+    }
+		 
+    android {
+      compileOptions {
+        sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+      }
+    }
 
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
