@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Become</string>
+    <string name="mb_blinkid_front_instructions">Escanea la parte frontal\ndel documento</string>
+</resources>
