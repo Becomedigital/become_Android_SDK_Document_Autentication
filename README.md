@@ -51,7 +51,7 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
 
 ### Implementación de la SDK Become
        
- 1. Descargue la depemdencia .aar y agréguela en las librerías de su proyecto.
+ 1. Descargue la dependencia `becomedigitalsdk.aar` y agréguela en las dependencias binarias locales de su proyecto.
 
 <p align="center">
   <img src="https://github.com/Becomedigital/become_Android_SDK_Document_Autentication/blob/main/libs.png">
