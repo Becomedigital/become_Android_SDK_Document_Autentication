@@ -53,13 +53,7 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos:
 
 ### Implementación de la SDK Become
        
- 1. Abra el archivo build.gradle dentro del directorio del módulo de su aplicación e incluya las siguientes dependencias en el archivo build.gradle de su aplicación:
- 
-		 implementation 'com.github.Becomedigital:become_Android_SDK_Document_Autentication:LATEST_VERSION'
-		 
-	Ejemplo:
-		 
-		 implementation 'com.github.becomedigital:become_Android_SDK_Document_Autentication:1.0'
+ 1. Descargue la depemdencia .aar y agréguela en las librerías de su proyecto.
 		 
  2. Al realizar los pasos anteriores, debe sincronizar su proyecto con gradle.
  
