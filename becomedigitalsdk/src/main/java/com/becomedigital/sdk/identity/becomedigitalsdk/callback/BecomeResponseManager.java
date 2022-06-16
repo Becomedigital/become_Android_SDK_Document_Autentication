@@ -29,7 +29,6 @@ public class BecomeResponseManager implements AsynchronousTask {
     private static WeakReference<BecomeCallBackManager> mCallbackManagerWeakReference = new WeakReference<>(null);
     private static BecomeResponseManager sBecomeManager;
     private WeakReference<Activity> mActivityWeakReference = new WeakReference<>(null);
-    private final ValidateStatusRest validateStatusRest = new ValidateStatusRest();
 
     public static BecomeInterfaseCallback getCallback() {
         BecomeCallBackManager becomeCallBackManager = (BecomeCallBackManager) mCallbackManagerWeakReference.get();
@@ -39,10 +38,6 @@ public class BecomeResponseManager implements AsynchronousTask {
         return becomeCallBackManager.getCallback();
     }
 
-    private Activity activity;
-    private BDIVConfig bDIVConfig;
-    private ResponseIV responseIV = new ResponseIV();
-
     /**
      * Method startAutentication
      * Starts the SDK authentication process and connects to the method displayed by the GUI..
@@ -51,19 +46,20 @@ public class BecomeResponseManager implements AsynchronousTask {
      * @param bDIVConfig Object with SDK configurations.
      */
     public void startAutentication(Activity activity, BDIVConfig bDIVConfig) {
-        this.bDIVConfig = bDIVConfig;
-        this.activity = activity;
         if (bDIVConfig.isFirstTransaction()) {
             Intent intent = new Intent(activity, StartActivity.class);
             intent.putExtra("BDIVConfig", (Parcelable) bDIVConfig);
             activity.startActivity(intent);
         } else {
             Log.i("BECOME_IV_SDK", "Enviando información al servidor...");
+            String ua = new WebView(activity).getSettings().getUserAgentString();
+            ValidateStatusRest validateStatusRest = new ValidateStatusRest();
             validateStatusRest.addDataServer(activity,
                     bDIVConfig,
-                    new WebView(activity).getSettings().getUserAgentString(),
+                    ua,
                     this
             );
+
         }
     }
 
@@ -133,42 +129,9 @@ public class BecomeResponseManager implements AsynchronousTask {
         }
     }
 
-
     @Override
-    public void onReceiveResultsTransaction(String response, String error, int responseStatus, int transactionId) {
-        activity.runOnUiThread(() -> {
-            this.responseIV.setFirstTransaction(false);
-
-            if (transactionId == ValidateStatusRest.GETRESGISTRYDATA) {
-                if (responseStatus == ResponseIV.SUCCES) {
-                    this.responseIV.setRegistryInformation(response);
-                    this.responseIV.setResponseStatus(ResponseIV.SUCCES);
-                } else {
-                    this.responseIV.setResponseStatus(ResponseIV.ERROR);
-                    this.responseIV.setMessage(error);
-                }
-                Objects.requireNonNull(getCallback()).onSuccess(responseIV);
-            } else {
-                if (responseStatus == ResponseIV.SUCCES) {
-                    if (!bDIVConfig.getDocumentNumber().isEmpty()) {
-                        this.responseIV.setDocumentValidation(response);
-                        Log.i("BECOME_IV_SDK", "Enviando información al servidor RNEC...");
-                        validateStatusRest.getDataRegistry(activity,
-                                bDIVConfig,
-                                new WebView(activity).getSettings().getUserAgentString(),
-                                this
-                        );
-                    } else {
-                        Objects.requireNonNull(getCallback()).onSuccess(responseIV);
-                    }
-                }else{
-                    this.responseIV.setResponseStatus(ResponseIV.ERROR);
-                    this.responseIV.setMessage(error);
-                    Objects.requireNonNull(getCallback()).onSuccess(responseIV);
-                }
-
-            }
-        });
+    public void onReceiveResultsTransaction(ResponseIV responseIV, int transactionId) {
+        Objects.requireNonNull(getCallback()).onSuccess(responseIV);
     }
 
     @Override

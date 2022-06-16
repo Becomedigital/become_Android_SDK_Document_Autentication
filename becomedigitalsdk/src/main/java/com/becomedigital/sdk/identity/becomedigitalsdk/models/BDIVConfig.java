@@ -6,8 +6,8 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 /**
- * BDIVConfig
- * Configuration of the SDK, the respective credentials and parameters are assigned for its operation.
+ *  BDIVConfig
+ *  Configuration of the SDK, the respective credentials and parameters are assigned for its operation.
  */
 public class BDIVConfig implements Parcelable, Serializable {
 
@@ -16,17 +16,15 @@ public class BDIVConfig implements Parcelable, Serializable {
     private String token;
     private String contractId;
     private String userId;
-    private String documentNumber = "";
-    private String frontImagePath = "";
+    private String frontImagePath;
 
     /**
      * Constructor BDIVConfig
-     *
      * @param token:              Bearer toquen for HTTPS security.
      * @param contractId:         Identifier of the acquired contract.
      * @param userId:             Transaction identifier.
      * @param isFirstTransaction: Defines whether the transaction is going to return an image, or is going to upload the document for validation.
-     * @param frontImagePath      required for validation on the server.
+     * @param frontImagePath             required for validation on the server.
      * @apiNote `IsFirstTransaction = true`, Means that the captured images of the document will be returned for preview, otherwise it will load document images in full frame for validation.
      */
     public BDIVConfig(boolean isFirstTransaction, String token, String contractId, String userId, String frontImagePath) {
@@ -34,15 +32,6 @@ public class BDIVConfig implements Parcelable, Serializable {
         this.token = token;
         this.contractId = contractId;
         this.userId = userId;
-        this.frontImagePath = frontImagePath;
-    }
-
-    public BDIVConfig(boolean isFirstTransaction, String token, String contractId, String userId, String documentNumber, String frontImagePath) {
-        this.isFirstTransaction = isFirstTransaction;
-        this.token = token;
-        this.contractId = contractId;
-        this.userId = userId;
-        this.documentNumber = documentNumber;
         this.frontImagePath = frontImagePath;
     }
 
@@ -85,7 +74,6 @@ public class BDIVConfig implements Parcelable, Serializable {
         dest.writeString(token);
         dest.writeString(contractId);
         dest.writeString(userId);
-        dest.writeString(documentNumber);
         dest.writeString(frontImagePath);
     }
 
@@ -95,7 +83,6 @@ public class BDIVConfig implements Parcelable, Serializable {
 
     /**
      * Method setFirstTransaction
-     *
      * @param firstTransaction Defines whether the transaction is going to return an image, or is going to upload the document for validation.
      *                         `IsFirstTransaction = true`, Means that the captured images of the document will be returned for preview, otherwise it will load document images in full frame for validation.
      */
@@ -109,7 +96,6 @@ public class BDIVConfig implements Parcelable, Serializable {
 
     /**
      * Method setFirstTransaction
-     *
      * @param token Bearer toquen for HTTPS security.
      */
     public void setToken(String token) {
@@ -122,7 +108,6 @@ public class BDIVConfig implements Parcelable, Serializable {
 
     /**
      * Method setContractId
-     *
      * @param contractId Identifier of the acquired contract.
      */
     public void setContractId(String contractId) {
@@ -135,24 +120,10 @@ public class BDIVConfig implements Parcelable, Serializable {
 
     /**
      * Method setUserId
-     *
      * @param userId Transaction identifier.
      */
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    /**
-     * Method setUserId
-     *
-     * @param documentNumber Document number for validation against the Colombian registry
-     */
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
     }
 
     public String getFrontImagePath() {
@@ -161,7 +132,6 @@ public class BDIVConfig implements Parcelable, Serializable {
 
     /**
      * Method setImgData
-     *
      * @param frontImagePath Path front image, required for validation on the server.
      */
     public void setFrontImagePath(String frontImagePath) {

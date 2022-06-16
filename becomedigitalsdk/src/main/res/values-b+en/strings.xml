@@ -53,5 +53,4 @@
     <string name="text_loader_selfie">Our artificial intelligence is performing a biometric analysis of your face</string>
     <string name="text_error_path_image_pick">You can`t get the file route</string>
     <string name="text_empty_balance">Insufficient balance</string>
-<!--    <string name="mb_blinkid_front_instructions">Scan the front side\nof the document</string>-->
 </resources>

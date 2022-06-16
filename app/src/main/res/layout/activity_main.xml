@@ -97,6 +97,7 @@
             android:hint="token"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:text="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTE4Nzc2NjQsIm5iZiI6MTY1MTg3NzY2NCwianRpIjoiYTEzMWIwODctYmZmMS00OTJiLWI2ZTgtMWZmODJlYjA2Zjk0IiwiZXhwIjoxNjUxODgxMjY0LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJhY2NfZGVtbyIsImNvbXBhbnlfaWQiOjIsImlzX2Rhc2hib2FyZF91c2VyIjpmYWxzZSwiaXNfcmV2aWV3ZXIiOmZhbHNlLCJyb2xlX2lkIjoxLCJjb21wYW55X2luZm8iOnsiY29tcGFueV9jb3VudHJ5IjoiQ08iLCJjb21wYW55X3N0YXRlIjoiIiwiY29tcGFueV9hZGRyZXNzIjoiQ2wuIERlbW8iLCJjb21wYW55X2xlZ2FsX3JlcHJlc2VudGF0aXZlIjoiQmVjb21lIERlbW8iLCJjb21wYW55X3Bob25lIjoiMjAwMDAwMCJ9fSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.dZu9lsHOO1rhW2PkY4BZYdv-XImZpWCOV9KP7Qiy8jc"
             android:textSize="14sp" />
 
         <EditText

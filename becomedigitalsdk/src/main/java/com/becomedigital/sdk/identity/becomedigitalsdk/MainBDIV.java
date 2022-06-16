@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -26,8 +25,6 @@ import com.bumptech.glide.Glide;
 import com.microblink.MicroblinkSDK;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.blinkid.generic.BlinkIdCombinedRecognizer;
-import com.microblink.entities.recognizers.blinkid.generic.classinfo.Country;
-import com.microblink.entities.recognizers.blinkid.generic.classinfo.Type;
 import com.microblink.image.Image;
 import com.microblink.intent.IntentDataTransferMode;
 import com.microblink.uisettings.ActivityRunner;
@@ -55,7 +52,7 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
     private BlinkIdCombinedRecognizer recognizer;
     private RecognizerBundle recognizerBundle;
     public static final int MY_BLINKID_REQUEST_CODE = 123;
-    private ResponseIV responseIV = new ResponseIV();
+    private ResponseIV  responseIV = new ResponseIV();
 
     /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
@@ -111,6 +108,10 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
     }
 
     //region server transactions
+    @Override
+    public void onReceiveResultsTransaction(ResponseIV responseIV, int transactionId) {
+
+    }
 
     private void enableAppRemoveSpinner() {
         runOnUiThread(() -> {
@@ -122,22 +123,16 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
     }
 
     @Override
-    public void onReceiveResultsTransaction(String response, String error, int resposeEstatus, int transactionId) {
-
-    }
-
-    @Override
     public void onReceiveResultsTransactionDictionary(Map<String, Object> map, int responseStatus, int transactionId) {
-        runOnUiThread(() -> {
-            if (transactionId == ValidateStatusRest.GETCONTRACT) {
-                if (responseStatus == ResponseIV.ERROR) {
-                    setResultError((String) map.get("mensaje"));
-                } else {
-                    enableAppRemoveSpinner();
-                    scan();
-                }
+        int GETCONTRACT = 5;
+        if (transactionId == GETCONTRACT) {
+            if (responseStatus == ResponseIV.ERROR) {
+                setResultError((String) map.get("mensaje"));
+            } else {
+                enableAppRemoveSpinner();
+                scan();
             }
-        });
+        }
     }
 
     @Override
@@ -223,12 +218,6 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
         String sex = result.getSex();
         String barcodeResult = result.getBarcodeResult().getStringData();
         byte[] barcodeResultData = result.getBarcodeResult().getRawData();
-        String countryName = result.getClassInfo().getCountryName();
-        String isoAlpha2CountryCode = result.getClassInfo().getIsoAlpha2CountryCode();
-        String isoAlpha3CountryCode = result.getClassInfo().getIsoAlpha3CountryCode();
-        String isoNumericCountryCode = result.getClassInfo().getIsoNumericCountryCode();
-        String typeName = result.getClassInfo().getType().name();
-        String documentNumber = result.getDocumentNumber();
 
         responseIV.setFirstName(firstName);
         responseIV.setLastName(lastName);
@@ -239,12 +228,7 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
         responseIV.setSex(sex);
         responseIV.setBarcodeResult(barcodeResult);
         responseIV.setBarcodeResultData(barcodeResultData);
-        responseIV.setCountryName(countryName);
-        responseIV.setIsoAlpha2CountryCode(isoAlpha2CountryCode);
-        responseIV.setIsoAlpha3CountryCode(isoAlpha3CountryCode);
-        responseIV.setIsoNumericCountryCode(isoNumericCountryCode);
-        responseIV.setType(typeName);
-        responseIV.setDocumentNumber(documentNumber);
+
 
         map.put("imgFront", Objects.requireNonNull(result.getFullDocumentFrontImage()));
         map.put("imgBack", Objects.requireNonNull(result.getFullDocumentBackImage()));
@@ -287,7 +271,7 @@ public class MainBDIV extends AppCompatActivity implements AsynchronousTask {
                 }
             }
 
-            switch (image.getKey()) {
+            switch (image.getKey()){
                 case "imgFront":
                     responseIV.setFrontImagePath(mFile.getPath());
                     break;

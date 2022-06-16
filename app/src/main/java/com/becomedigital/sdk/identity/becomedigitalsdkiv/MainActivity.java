@@ -19,7 +19,6 @@ import com.becomedigital.sdk.identity.becomedigitalsdk.models.BDIVConfig;
 import com.becomedigital.sdk.identity.becomedigitalsdk.models.ResponseIV;
 
 import java.io.File;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView textResponse;
     private String fullFronImagePath = "";
     private TextView textValidation;
-    private ResponseIV glovalresponseIV = new ResponseIV();
 
     @SuppressLint("WrongThread")
     @Override
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(final ResponseIV responseIV) {
                     runOnUiThread(() -> {
-                        glovalresponseIV = responseIV;
                         if (responseIV.getFullFronImagePath() != null) {
                             File imgFileFullFront = new File(responseIV.getFullFronImagePath());
                             if (imgFileFullFront.exists()) {
@@ -131,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                         token,
                         contractId,
                         userId,
-                        glovalresponseIV.getDocumentNumber(),
                         frontImagePath
                 ));
 
@@ -139,11 +135,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(final ResponseIV responseIV) {
                 runOnUiThread(() -> {
-                    if(responseIV.getResponseStatus() == ResponseIV.SUCCES){
-                        textValidation.setText(MessageFormat.format("{0}\n{1}", responseIV.getDocumentValidation(), responseIV.getRegistryInformation()));
-                    }else{
-                        textValidation.setText(responseIV.getMessage());
-                    }
+                    textValidation.setText(responseIV.getDocumentValidation());
                 });
             }
 

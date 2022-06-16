@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -36,17 +35,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ValidateStatusRest {
-    public static final int GETCONTRACT = 1;
-    public static final int ADDDATARESPONSE = 2;
-    public static final int GETRESGISTRYDATA = 3;
-
-    static {
-        System.loadLibrary("keys");
-    }
-
-    public native String getUrlGetToken();
-    public native String urlAddData();
-    public native String urlGetDataRegistry();
+    private final int GETCONTRACT = 5;
+    private final int ADDDATARESPONSE = 2;
 
     public void getContract(String contractId, String access_token, final Activity activity, final AsynchronousTask asynchronousTask) {
         AsyncTask.execute(() -> {
@@ -55,7 +45,8 @@ public class ValidateStatusRest {
                         .connectTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS)
                         .readTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS)
                         .writeTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS).build();
-                String serverUrl = new String(Base64.decode(getUrlGetToken(),Base64.DEFAULT));
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity); // get url
+                String serverUrl = preferences.getString(SharedParameters.URL_GET_CONTRACT, SharedParameters.url_get_contract);
                 String urlContractId = serverUrl + contractId;
                 Request request = new Request.Builder()
                         .url(urlContractId)
@@ -67,6 +58,7 @@ public class ValidateStatusRest {
 
                 call.enqueue(new Callback() {
 
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onFailure(Call call, IOException e) {
                         asynchronousTask.onErrorTransaction(e.getLocalizedMessage());
@@ -112,7 +104,8 @@ public class ValidateStatusRest {
                               final AsynchronousTask asynchronousTask) {
         AsyncTask.execute(() -> {
             try {
-                String serverUrl = new String(Base64.decode(urlAddData(), Base64.DEFAULT));
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity); // get url
+                String serverUrl = preferences.getString(SharedParameters.URL_ADD_DATA, SharedParameters.url_add_data);
                 File document = new File(config.getFrontImagePath());
                 Log.i("BECOME_IV_SDK", "userId: " + config.getUserId());
                 Log.i("BECOME_IV_SDK", "contractId: " + config.getContractId());
@@ -141,6 +134,7 @@ public class ValidateStatusRest {
 
                 call.enqueue(new Callback() {
 
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onFailure(Call call, IOException e) {
                         asynchronousTask.onErrorTransaction(e.getLocalizedMessage());
@@ -149,88 +143,22 @@ public class ValidateStatusRest {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         try {
-                            Log.i("BECOME_IV_SDK", "El servidor respondió!");
+                            Log.i("BECOME_IV_SDK", "El servidor respondió.");
                             String jsonData = response.body().string();
                             JSONObject Jobject = new JSONObject(jsonData);
                             if (Jobject.has("status_code")) {
                                 if (Jobject.getString("status_code").equals("OK")) {
-                                    asynchronousTask.onReceiveResultsTransaction(Jobject.toString(), "", ResponseIV.SUCCES, ADDDATARESPONSE);
+                                    asynchronousTask.onReceiveResultsTransaction(new ResponseIV(ResponseIV.SUCCES, false, Jobject.toString()), ADDDATARESPONSE);
                                 } else {
-                                    asynchronousTask.onReceiveResultsTransaction("", Jobject.toString(), ResponseIV.ERROR, ADDDATARESPONSE);
+                                    asynchronousTask.onReceiveResultsTransaction(new ResponseIV(ResponseIV.ERROR, Jobject.toString()), ADDDATARESPONSE);
                                 }
                             } else {
                                 if (Jobject.has("msg")) {
-                                    asynchronousTask.onReceiveResultsTransaction("",Jobject.getString("msg"), ResponseIV.ERROR, ADDDATARESPONSE);
+                                    asynchronousTask.onReceiveResultsTransaction(new ResponseIV(ResponseIV.ERROR, Jobject.getString("msg")), ADDDATARESPONSE);
                                 }
                                 if (Jobject.has("error")) {
-                                    asynchronousTask.onReceiveResultsTransaction("", Jobject.getString("error"), ResponseIV.ERROR, ADDDATARESPONSE);
+                                    asynchronousTask.onReceiveResultsTransaction(new ResponseIV(ResponseIV.ERROR, Jobject.getString("error")), ADDDATARESPONSE);
                                 }
-                            }
-                        } catch (JSONException e) {
-                            asynchronousTask.onErrorTransaction(e.getLocalizedMessage());
-                        }
-                    }
-                });
-
-
-            } catch (Exception e) {
-                asynchronousTask.onErrorTransaction(e.getLocalizedMessage());
-            }
-        });
-    }
-
-
-
-    public void getDataRegistry(final Activity activity,
-                                BDIVConfig config,
-                                String ua,
-                                final AsynchronousTask asynchronousTask) {
-
-        AsyncTask.execute(() -> {
-            try {
-                String serverUrl = new String(Base64.decode(urlGetDataRegistry(),Base64.DEFAULT));
-                MediaType JSON = MediaType.parse("application/json");
-                JSONObject json = new JSONObject();
-                json.put("documentNumber", config.getDocumentNumber());
-                json.put("contractId", config.getContractId());
-
-                String jsonString = json.toString();
-                RequestBody body = RequestBody.create(JSON, jsonString);
-                OkHttpClient client = new OkHttpClient.Builder()
-                        .connectTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS)
-                        .readTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS)
-                        .writeTimeout(activity.getResources().getInteger(R.integer.timeOut), TimeUnit.SECONDS).build();
-
-                Request request = new Request.Builder()
-                        .url(serverUrl)
-                        .header("Authorization", "Bearer " + config.getToken())
-                        .post(body)
-                        .build();
-
-                Call call = client.newCall(request);
-
-                call.enqueue(new Callback() {
-
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        asynchronousTask.onErrorTransaction(e.getLocalizedMessage());
-                        // // e.printStackTrace();();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        try {
-                            Log.i("BECOME_IV_SDK", "El servidor RNEC respondió!");
-                            String jsonData = response.body().string();
-                            JSONObject Jobject = new JSONObject(jsonData);
-                            if (Jobject.has("error")) {
-                                if (!Jobject.getString("error").isEmpty()) {
-                                    asynchronousTask.onReceiveResultsTransaction(Jobject.toString(), "", ResponseIV.SUCCES, GETRESGISTRYDATA);
-                                } else {
-                                    asynchronousTask.onReceiveResultsTransaction("", Jobject.getString("error"), ResponseIV.ERROR, GETRESGISTRYDATA);
-                                }
-                            } else {
-                                asynchronousTask.onReceiveResultsTransaction("", Jobject.toString(), ResponseIV.ERROR, GETRESGISTRYDATA);
                             }
 
                         } catch (JSONException e) {
@@ -245,5 +173,6 @@ public class ValidateStatusRest {
             }
         });
     }
+
 
 }
