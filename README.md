@@ -103,9 +103,9 @@ Nota: para obtener información de la registraduría nacional de Colombia, se re
  
         //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
 	
-        String token =  "your bearer token here" ;  
-        String contractId =  "your contract ID here";
-        String userId = "your user ID here"
+	String token =  "your bearer token here" ;  
+	String contractId =  "your contract ID here";
+	String userId = "your user ID here"
 	String frontImagePath = "Image path, returned by the first event"
   
 	BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
