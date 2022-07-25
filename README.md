@@ -109,15 +109,17 @@ Nota: para obtener información de la registraduría nacional de Colombia, se re
 	String frontImagePath = "Image path, returned by the first event"
   
 	BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
-	new BDIVConfig(false,
-		token,
-		contractId,
-		userId,
-		glovalresponseIV.getBarcodeResult(),
-		glovalresponseIV.getDocumentNumber(), // adicionar este parámetro si es documento colombiano.
-		glovalresponseIV.getFullFronImagePath(),
-		glovalresponseIV.getBackImagePath()
-	));
+	 new BDIVConfig(false,
+                        token,
+                        contractId,
+                        userId,
+                        glovalresponseIV.getDocumentNumber(),
+                        glovalresponseIV.getIsoAlpha2CountryCode(),
+                        glovalresponseIV.getTypeOrdinal(),
+                        glovalresponseIV.getFullFronImagePath(),
+                        glovalresponseIV.getBackImagePath(),
+                        glovalresponseIV.getBarcodeResult()
+        ));
 		
 ## Cambiar textos predeterminados en la SDK     
 	
@@ -220,22 +222,32 @@ Los siguientes son los parámetros que permiten el retorno de la información ca
 
     private String firstName;
     private String lastName;
+    private String documentNumber;
     private String dateOfExpiry;
     private Integer age;
     private String dateOfBirth;
+    private String placeOfBirth;
+    private String dateOfIssue;
     private String mrzText;
     private String sex;
     private String barcodeResult;
     private byte[] barcodeResultData;
+    private String isoAlpha2CountryCode;
+    private String isoAlpha3CountryCode;
+    private String isoNumericCountryCode;
+    private String countryName;
+    private String type;
+    private Integer typeOrdinal;
     private String frontImagePath;
     private String backImagePath;
     private String fullFronImagePath;
     private String fullBackImagePath;
     private String documentValidation;
+    private String registryInformation;
     private Integer responseStatus;
     private String message;
     private Boolean IsFirstTransaction;
-
+    
 Ejemplo de la respuesta:
 
 	        @Override
