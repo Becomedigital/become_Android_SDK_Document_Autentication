@@ -107,14 +107,17 @@ Nota: para obtener información de la registraduría nacional de Colombia, se re
         String contractId =  "your contract ID here";
         String userId = "your user ID here"
 	String frontImagePath = "Image path, returned by the first event"
-        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
-                new BDIVConfig(false,
-                        token,
-                        contractId,
-                        userId,
-			glovalresponseIV.getDocumentNumber(), // adicionar este parámetro si es documento colombiano.
-                        frontImagePath
-                ));
+  
+	BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
+	new BDIVConfig(false,
+		token,
+		contractId,
+		userId,
+		glovalresponseIV.getBarcodeResult(),
+		glovalresponseIV.getDocumentNumber(), // adicionar este parámetro si es documento colombiano.
+		glovalresponseIV.getFullFronImagePath(),
+		glovalresponseIV.getBackImagePath()
+	));
 		
 ## Cambiar textos predeterminados en la SDK     
 	
