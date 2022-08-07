@@ -242,6 +242,7 @@ Los siguientes son los parámetros que permiten el retorno de la información ca
     private String backImagePath;
     private String fullFronImagePath;
     private String fullBackImagePath;
+    private String faceImagePath;
     private String documentValidation;
     private String registryInformation;
     private Integer responseStatus;
