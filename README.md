@@ -19,7 +19,6 @@ Este es un espacio para conocer a cerca del SDK Android de Become para la valida
 	    repositories {
 		google()
 		jcenter()
-		maven { url 'https://maven.microblink.com' }
 	    }
 	}
 
@@ -45,9 +44,6 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
-    implementation('com.microblink:blinkid:5.16.0@aar') {
-        transitive = true
-    }
   
 ### Agregar licencia requerida
 
