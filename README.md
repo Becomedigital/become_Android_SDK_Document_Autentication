@@ -1,26 +1,4 @@
 # Documentación de Become Android SDK
-Este es un espacio para conocer a cerca del SDK Android de Become para la validación de identidad.
-<p align="center">
-  <img src="https://github.com/Becomedigital/become_ANDROID_SDK/blob/master/Pantalla_Android.png" width="284" height="572">
-</p>
-
-## Configuraciones de Gradle
-
- 1. Dentro del archivo build.gradle debe agregar las siguientes modificaciones:
-
-	
-
-
-<p align="center">
-  <img src="https://github.com/Becomedigital/become_ANDROID_SDK/blob/master/build_gradle.png">
-</p>
-
-	allprojects {
-	    repositories {
-		google()
-		jcenter()
-	    }
-	}
 
 ### Implementación de módulos requeridos
 Cómo primera medida es necesaria la implementacion de los siguientes módulos y configuraciones:
@@ -31,8 +9,8 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
 		 
     android {
       compileOptions {
-        sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
       }
     }
 
@@ -57,7 +35,7 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
 
 ### Implementación de la SDK Become
        
- 1. Descargue la dependencia `becomedigitalsdk.aar` y agréguela en las dependencias binarias locales de su proyecto.
+ 1. Descargue las librerías `becomedigitalsdk.aar` y `BlinkID.aar`, a continuación agréguelas en las dependencias binarias locales de su proyecto.
 
 <p align="center">
   <img src="https://github.com/Becomedigital/become_Android_SDK_Document_Autentication/blob/main/libs.png">
