@@ -201,6 +201,7 @@ Los siguientes son los parámetros que permiten el retorno de la información ca
     private Integer age;
     private String dateOfBirth;
     private String placeOfBirth;
+    private String nationality
     private String dateOfIssue;
     private String mrzText;
     private String sex;
