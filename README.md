@@ -72,7 +72,7 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
 	        String contractId =  "your contract ID here";
 	        String userId = "your user ID here"
 		
-	        //Instancia para iniciar la interfaz
+	        // Instance to start the interface
 	        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
 	                    new BDIVConfig(true,
 		                            true, // default false: Filter for recognition of immigration documents that contain different types of QR codes on the back. 
