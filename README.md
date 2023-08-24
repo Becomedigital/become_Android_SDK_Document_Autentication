@@ -79,8 +79,8 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
 	                            token,
 	                            contractId,
 	                            userId, 
-	                            DocumentType.oldPeruvianAlienId, // Tipo de documento a capturar
-	                            true)); //Define si se muestra o no la confirmación de captura
+	                            DocumentType.oldPeruvianAlienId, // Type of document to capture
+	                            true)); // Defines if the capture confirmation is displayed or not
 	  }
 	}
 	
