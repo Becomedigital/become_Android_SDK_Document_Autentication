@@ -88,7 +88,7 @@ En el método `secondAction ()` de su `Activity` de aplicación, inicialice Beco
 
 Nota: para obtener información de la registraduría nacional de Colombia, se requiere se adicione el parámetro `documentNumber`, el cual es retornado por el primer llamado a la SDK. 
  
-        //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
+        // Configuration parameters: The value of the parameters must be requested when contracting the service
 	
 	String token =  "your bearer token here" ;  
 	String contractId =  "your contract ID here";
