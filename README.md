@@ -45,7 +45,17 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
  
  ## Inicialización de la SDK
  
-**En el método `onCreate ()` de su `Activity` en su aplicación, inicialice Become para la captura de imágenes, se debe asignar el `ItFirstTransaction` como True, puedes utilizar el siguiente fragmento de código:**
+**En el método `onCreate ()` de su `Activity` en su aplicación, inicialice Become para la captura de imágenes, se debe asignar el `ItFirstTransaction` como True.**
+
+  #### Tipos de documento
+	
+	public enum DocumentType {
+	     nationalId,
+	     oldPeruvianAlienId,
+	     passport
+	}
+ 
+ **puedes utilizar el siguiente fragmento de código:**
 
 	public class MainActivity extends AppCompatActivity {
     
@@ -63,12 +73,14 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
         String userId = "your user ID here"
 	
         //Instancia para iniciar la interfaz
-      BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
+        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
                     new BDIVConfig(true,
-                    true, // default false: Filter for recognition of immigration documents that contain different types of QR codes on the back. 
-                            token,
-                            contractId,
-                            userId));
+	                            true, // default false: Filter for recognition of immigration documents that contain different types of QR codes on the back. 
+	                            token,
+	                            contractId,
+	                            userId, 
+	                            DocumentType.oldPeruvianAlienId, // Tipo de documento a capturar
+	                            true)); //Define si se muestra o no la confirmación de captura
 	  }
 	}
 	
