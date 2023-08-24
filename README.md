@@ -57,32 +57,32 @@ Cómo primera medida es necesaria la implementacion de los siguientes módulos y
  
  **puedes utilizar el siguiente fragmento de código:**
 
-	public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
     
-    //Con el fin de manejar las respuestas de inicio de sesión, debe crear un callback utilizando el siguiente fragmento de código
-    private BecomeCallBackManager mCallbackManager = BecomeCallBackManager.createNew ( );
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-	    super.onCreate (savedInstanceState);
-	    setContentView (R.layout.activity_main);
-
-        //Parámetros de configuración: El valor de los parámetros debe ser solicitado al contratar el servicio
-        String token =  "your bearer token here" ;  
-        String contractId =  "your contract ID here";
-        String userId = "your user ID here"
+	    // In order to handle login responses, you need to create a callback using the following code snippet
+	    private BecomeCallBackManager mCallbackManager = BecomeCallBackManager.createNew ( );
 	
-        //Instancia para iniciar la interfaz
-        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
-                    new BDIVConfig(true,
-	                            true, // default false: Filter for recognition of immigration documents that contain different types of QR codes on the back. 
-	                            token,
-	                            contractId,
-	                            userId, 
-	                            DocumentType.oldPeruvianAlienId, // Type of document to capture
-	                            true)); // Defines if the capture confirmation is displayed or not
-	  }
-	}
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+		    super.onCreate (savedInstanceState);
+		    setContentView (R.layout.activity_main);
+	
+	        // Configuration parameters: The value of the parameters must be requested when contracting the service
+	        String token =  "your bearer token here" ;  
+	        String contractId =  "your contract ID here";
+	        String userId = "your user ID here"
+		
+	        //Instancia para iniciar la interfaz
+	        BecomeResponseManager.getInstance().startAutentication(MainActivity.this,
+	                    new BDIVConfig(true,
+		                            true, // default false: Filter for recognition of immigration documents that contain different types of QR codes on the back. 
+		                            token,
+		                            contractId,
+		                            userId, 
+		                            DocumentType.oldPeruvianAlienId, // Type of document to capture
+		                            true)); // Defines if the capture confirmation is displayed or not
+		  }
+		}
 	
 En el método `secondAction ()` de su `Activity` de aplicación, inicialice Become y proceda al el envío de la imagen del documento para su posterior validación, se debe asignar el `ItFirstTransaction` como False, Y el parámetro imagen debe estar cargado con la información de la imagen completa por el anverso del documento, puedes utilizar el siguiente fragmento de código:**
 
